@@ -41,32 +41,6 @@ export default function Navbar() {
             NEWS
           </Link>
 
-          {/* Media Dropdown */}
-          <div className="relative group py-4">
-            <button className="flex items-center gap-1 hover:text-[#e6007e] transition-colors uppercase font-black cursor-pointer">
-              MEDIA
-              <svg className="w-4 h-4 fill-current ml-0.5" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-              </svg>
-            </button>
-            <div className="absolute top-full left-0 hidden group-hover:block w-48 pt-2 z-50">
-              <div className="bg-[#282828] border border-white/10 rounded-xl shadow-2xl py-2">
-                <Link href="/#media" className="block px-4 py-2.5 text-sm font-bold text-slate-200 hover:bg-[#e6007e] hover:text-white transition">
-                  Videos & Trailers
-                </Link>
-                <Link href="/#wallpapers" className="block px-4 py-2.5 text-sm font-bold text-slate-200 hover:bg-[#e6007e] hover:text-white transition">
-                  Wallpapers
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <Link href="/#next-update" className="hover:text-[#e6007e] transition-colors">
-            NEXT UPDATE
-          </Link>
-          <Link href="/#support" className="hover:text-[#e6007e] transition-colors">
-            SUPPORT
-          </Link>
           <a
             href="https://www.roblox.com.mu/games/920587237/24H-Adopt-Me?privateServerLinkCode=62041869677502889309248447910791"
             target="_blank"
