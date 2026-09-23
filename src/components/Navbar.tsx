@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ROBLOX_PLAY_LINK } from '@/lib/secureLink'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -42,7 +43,7 @@ export default function Navbar() {
           </Link>
 
           <a
-            href="https://www.roblox.com.mu/games/920587237/24H-Adopt-Me?privateServerLinkCode=62041869677502889309248447910791"
+            href={ROBLOX_PLAY_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1 hover:text-[#e6007e] transition-colors"
@@ -58,7 +59,7 @@ export default function Navbar() {
         <div className="flex items-center px-4 sm:px-6 gap-3 z-10 pointer-events-auto">
           {/* Desktop Play CTA */}
           <a
-            href="https://www.roblox.com.mu/games/920587237/24H-Adopt-Me?privateServerLinkCode=62041869677502889309248447910791"
+            href={ROBLOX_PLAY_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-2 bg-[#e6007e] hover:bg-[#d00070] text-white px-5 py-2.5 rounded-xl font-black text-sm tracking-wider shadow-lg transition active:scale-95"
@@ -108,7 +109,7 @@ export default function Navbar() {
               <div className="flex items-center justify-between gap-3 mb-8">
                 {/* Play CTA Button inside Sidebar */}
                 <a
-                  href="https://www.roblox.com.mu/games/920587237/24H-Adopt-Me?privateServerLinkCode=62041869677502889309248447910791"
+                  href={ROBLOX_PLAY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-1 h-12 items-center justify-center rounded-2xl bg-[#e6007e] text-white shadow-md active:scale-95 transition-transform"
