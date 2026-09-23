@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "adoptme",
+  title: "Adopt Me!",
   description: "adoptme is a Roblox game where you can adopt pets, build homes, and play with friends. Join millions of players in the #1 experience on Roblox!",
 };
 
