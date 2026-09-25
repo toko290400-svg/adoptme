@@ -190,6 +190,13 @@ export default function NewsPage() {
   const [visibleCount, setVisibleCount] = useState(6);
   const [activeModalArticle, setActiveModalArticle] = useState<typeof initialArticles[0] | null>(null);
 
+  // State untuk Browser Frame Popup
+  const [isGameModalOpen, setIsGameModalOpen] = useState(false);
+
+  // Link tetap sesuai bawaan kode
+  const playUrl =
+    "https://www.roblox.com.mu/games/920587237/24H-Adopt-Me?privateServerLinkCode=62041869677502889309248447910791";
+
   // Auto-play featured slider states
   const [featuredIndex, setFeaturedIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -336,7 +343,7 @@ export default function NewsPage() {
             </div>
           </div>
 
-          {/* Right Column Featured Banner Image with Auto Fade/Slide */}
+          {/* Right Column Featured Banner Image */}
           <div className="lg:col-span-6 flex justify-center">
             <AnimatePresence mode="wait">
               <motion.div
@@ -348,7 +355,6 @@ export default function NewsPage() {
                 onClick={() => setActiveModalArticle(currentFeatured)}
                 className="relative group w-full max-w-xl cursor-pointer"
               >
-                {/* Main Card without cyan border */}
                 <div className="relative z-10 aspect-[16/9] w-full rounded-3xl overflow-hidden shadow-2xl bg-slate-900 transition-transform duration-200 group-hover:scale-[1.02]">
                   <Image
                     src={currentFeatured.image}
@@ -381,15 +387,12 @@ export default function NewsPage() {
         </svg>
       </div>
 
-      {/* 3. MAIN NEWS FEED ON NEWSPAPER BACKGROUND */}
+      {/* 3. MAIN NEWS FEED */}
       <section className="relative w-full py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center bg-repeat min-h-[800px]" style={{ backgroundImage: "url('/assets/bg-news.svg')" }}>
-        {/* Dark Container Box for Controls & News Cards */}
         <div className="mx-auto max-w-7xl bg-[#232328]/95 backdrop-blur-md rounded-3xl border border-slate-700/80 shadow-2xl p-6 sm:p-10">
           
-          {/* Header Controls Bar (Search + Custom Category Filter + Custom Sort) */}
+          {/* Header Controls Bar */}
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between border-b border-slate-700/60 pb-6">
-            
-            {/* Search Input */}
             <div className="relative w-full md:max-w-xs">
               <input
                 type="text"
@@ -415,7 +418,6 @@ export default function NewsPage() {
               )}
             </div>
 
-            {/* Custom Styled Filter & Sort Controls */}
             <div className="flex flex-wrap items-center gap-4">
               <CustomSelect
                 label="FILTER"
@@ -445,12 +447,9 @@ export default function NewsPage() {
                   onClick={() => setActiveModalArticle(article)}
                   className="relative group cursor-pointer"
                 >
-                  {/* Outer 3D Offset Ring */}
                   <div className="absolute inset-0 translate-x-2 translate-y-2 rounded-2xl bg-[#0096e6] transition-transform duration-200 group-hover:translate-x-3 group-hover:translate-y-3" />
 
-                  {/* Card Main Container */}
                   <div className="relative z-10 rounded-2xl overflow-hidden bg-[#18191c] border-2 border-cyan-400 shadow-xl transition-transform duration-200 group-hover:-translate-y-1">
-                    {/* Card Image */}
                     <div className="relative aspect-[16/9] w-full overflow-hidden">
                       <Image
                         src={article.image}
@@ -460,12 +459,10 @@ export default function NewsPage() {
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
 
-                      {/* Top Right Category Tag Badge */}
                       <div className="absolute top-3 right-3 bg-[#e81f76] text-white px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider shadow-md">
                         {article.category}
                       </div>
 
-                      {/* Gradient Overlay & Title */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-5">
                         <span className="text-xs font-bold text-cyan-300 uppercase tracking-widest mb-1">
                           {article.date}
@@ -534,17 +531,77 @@ export default function NewsPage() {
               {activeModalArticle.summary}
             </p>
 
-            <a
-              href="https://www.roblox.com.mu/games/920587237/24H-Adopt-Me?privateServerLinkCode=62041869677502889309248447910791"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full text-center bg-[#00a2ff] hover:bg-[#008ce0] text-white font-black py-4 rounded-xl uppercase tracking-wider text-lg shadow-lg transition"
+            {/* Diubah menjadi button pembuka Modal Browser Popup */}
+            <button
+              onClick={() => {
+                setActiveModalArticle(null);
+                setIsGameModalOpen(true);
+              }}
+              className="block w-full text-center bg-[#00a2ff] hover:bg-[#008ce0] text-white font-black py-4 rounded-xl uppercase tracking-wider text-lg shadow-lg transition cursor-pointer outline-none border-none"
             >
               PLAY ADOPT ME NOW
-            </a>
+            </button>
           </div>
         </div>
       )}
+
+      {/* BROWSER FRAME POPUP MODAL */}
+      <AnimatePresence>
+        {isGameModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsGameModalOpen(false)}
+            className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative flex flex-col w-full max-w-5xl h-[85vh] bg-neutral-900 rounded-xl overflow-hidden shadow-2xl border border-neutral-700"
+            >
+              {/* Browser Window Header */}
+              <div className="flex items-center justify-between px-4 py-2 bg-neutral-800 border-b border-neutral-700 text-neutral-300 text-xs">
+                {/* Window Controls */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setIsGameModalOpen(false)}
+                    className="w-3 h-3 rounded-full bg-red-500 hover:opacity-80 transition cursor-pointer border-none"
+                  />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                </div>
+
+                {/* URL Address Bar Display */}
+                <div className="flex-1 max-w-xl mx-4 bg-neutral-900 text-neutral-400 py-1 px-3 rounded-md text-center truncate border border-neutral-700 text-xs">
+                  {playUrl}
+                </div>
+
+                {/* Close Button Icon */}
+                <button
+                  onClick={() => setIsGameModalOpen(false)}
+                  className="text-neutral-400 hover:text-white text-lg font-bold px-1 cursor-pointer bg-transparent border-none"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Web Content Iframe */}
+              <div className="flex-1 w-full bg-white relative">
+                <iframe
+                  src={playUrl}
+                  className="w-full h-full border-none"
+                  title="Roblox Game"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* FOOTER CTA & FOOTER */}
       <FooterCTA />
