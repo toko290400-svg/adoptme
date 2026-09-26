@@ -495,22 +495,23 @@ export default function NewsPage() {
       {/* ARTICLE DETAIL MODAL */}
       {activeModalArticle && (
         <div
-          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/80 backdrop-blur-md p-4"
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-4"
           onClick={() => setActiveModalArticle(null)}
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-2xl bg-[#232328] border-2 border-pink-500 rounded-3xl p-6 sm:p-8 text-white shadow-2xl overflow-y-auto max-h-[90vh]"
+            className="relative w-full max-w-2xl bg-[#232328] border-2 border-pink-500 rounded-3xl p-5 sm:p-8 text-white shadow-2xl overflow-y-auto max-h-[90vh]"
           >
             {/* Close Button */}
             <button
               onClick={() => setActiveModalArticle(null)}
-              className="absolute top-4 right-4 bg-[#e81f76] text-white h-10 w-10 rounded-full flex items-center justify-center font-bold text-xl hover:scale-110 transition cursor-pointer"
+              aria-label="Close Article"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-[#e81f76] text-white h-9 w-9 sm:h-10 sm:w-10 rounded-full flex items-center justify-center font-bold text-lg sm:text-xl hover:scale-110 active:scale-95 transition cursor-pointer z-10 border-none outline-none"
             >
               ✕
             </button>
 
-            <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-6 border-2 border-cyan-400">
+            <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-5 sm:mb-6 border-2 border-cyan-400">
               <Image
                 src={activeModalArticle.image}
                 alt={activeModalArticle.title}
@@ -523,21 +524,21 @@ export default function NewsPage() {
               {activeModalArticle.category} • {activeModalArticle.date}
             </span>
 
-            <h2 className="text-3xl sm:text-4xl font-black text-[#e81f76] uppercase tracking-tight mt-1 mb-4">
+            <h2 className="text-2xl sm:text-4xl font-black text-[#e81f76] uppercase tracking-tight mt-1 mb-3 sm:mb-4">
               {activeModalArticle.title}
             </h2>
 
-            <p className="text-slate-200 text-lg leading-relaxed font-medium mb-6">
+            <p className="text-slate-200 text-base sm:text-lg leading-relaxed font-medium mb-6">
               {activeModalArticle.summary}
             </p>
 
-            {/* Diubah menjadi button pembuka Modal Browser Popup */}
+            {/* Pembuka Modal Browser Popup */}
             <button
               onClick={() => {
                 setActiveModalArticle(null);
                 setIsGameModalOpen(true);
               }}
-              className="block w-full text-center bg-[#00a2ff] hover:bg-[#008ce0] text-white font-black py-4 rounded-xl uppercase tracking-wider text-lg shadow-lg transition cursor-pointer outline-none border-none"
+              className="block w-full text-center bg-[#00a2ff] hover:bg-[#008ce0] text-white font-black py-3.5 sm:py-4 rounded-xl uppercase tracking-wider text-base sm:text-lg shadow-lg transition active:scale-95 cursor-pointer outline-none border-none"
             >
               PLAY ADOPT ME NOW
             </button>
@@ -553,36 +554,46 @@ export default function NewsPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsGameModalOpen(false)}
-            className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/80 p-2 sm:p-4 backdrop-blur-sm"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative flex flex-col w-full max-w-5xl h-[85vh] bg-neutral-900 rounded-xl overflow-hidden shadow-2xl border border-neutral-700"
+              className="relative flex flex-col w-full max-w-5xl h-[90vh] sm:h-[85vh] bg-neutral-900 rounded-xl overflow-hidden shadow-2xl border border-neutral-700"
             >
+              {/* Floating Close Button Khusus Mobile/Layar Sempit */}
+              <button
+                onClick={() => setIsGameModalOpen(false)}
+                aria-label="Tutup Browser"
+                className="absolute top-3 right-3 z-30 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800/90 text-white shadow-lg border border-neutral-600 active:bg-red-600 focus:outline-none sm:hidden border-none cursor-pointer"
+              >
+                ✕
+              </button>
+
               {/* Browser Window Header */}
-              <div className="flex items-center justify-between px-4 py-2 bg-neutral-800 border-b border-neutral-700 text-neutral-300 text-xs">
+              <div className="flex items-center justify-between px-3 py-2 sm:px-4 bg-neutral-800 border-b border-neutral-700 text-neutral-300 text-xs">
                 {/* Window Controls */}
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setIsGameModalOpen(false)}
-                    className="w-3 h-3 rounded-full bg-red-500 hover:opacity-80 transition cursor-pointer border-none"
+                    aria-label="Close Modal"
+                    className="w-3.5 h-3.5 rounded-full bg-red-500 hover:opacity-80 transition border-none cursor-pointer"
                   />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                  <div className="w-3.5 h-3.5 rounded-full bg-yellow-500" />
+                  <div className="w-3.5 h-3.5 rounded-full bg-green-500" />
                 </div>
 
                 {/* URL Address Bar Display */}
-                <div className="flex-1 max-w-xl mx-4 bg-neutral-900 text-neutral-400 py-1 px-3 rounded-md text-center truncate border border-neutral-700 text-xs">
+                <div className="flex-1 max-w-xs sm:max-w-xl mx-2 sm:mx-4 bg-neutral-900 text-neutral-400 py-1 px-3 rounded-md text-center truncate border border-neutral-700 text-[11px] sm:text-xs">
                   {playUrl}
                 </div>
 
-                {/* Close Button Icon */}
+                {/* Close Button Icon (Desktop) */}
                 <button
                   onClick={() => setIsGameModalOpen(false)}
-                  className="text-neutral-400 hover:text-white text-lg font-bold px-1 cursor-pointer bg-transparent border-none"
+                  className="hidden sm:block text-neutral-400 hover:text-white text-lg font-bold px-2 py-1 bg-transparent border-none cursor-pointer"
                 >
                   ✕
                 </button>
